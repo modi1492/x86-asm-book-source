@@ -4,12 +4,12 @@
          ;创建日期：2011-10-26 12:11
 
          ;以下常量定义部分。内核的大部分内容都应当固定 
-         core_code_seg_sel     equ  0x38    ;内核代码段选择子
-         core_data_seg_sel     equ  0x30    ;内核数据段选择子 
-         sys_routine_seg_sel   equ  0x28    ;系统公共例程代码段的选择子 
-         video_ram_seg_sel     equ  0x20    ;视频显示缓冲区的段选择子
-         core_stack_seg_sel    equ  0x18    ;内核堆栈段选择子
-         mem_0_4_gb_seg_sel    equ  0x08    ;整个0-4GB内存的段的选择子
+         core_code_seg_sel     equ  0x38    ;内核代码段选择子 7
+         core_data_seg_sel     equ  0x30    ;内核数据段选择子 6
+         sys_routine_seg_sel   equ  0x28    ;系统公共例程代码段的选择子 5
+         video_ram_seg_sel     equ  0x20    ;视频显示缓冲区的段选择子 4
+         core_stack_seg_sel    equ  0x18    ;内核堆栈段选择子 3
+         mem_0_4_gb_seg_sel    equ  0x08    ;整个0-4GB内存的段的选择子 1
 
 ;-------------------------------------------------------------------------------
          ;以下是系统核心的头部，用于加载核心程序 

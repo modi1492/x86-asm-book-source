@@ -6,22 +6,22 @@
          core_base_address equ 0x00040000   ;常数，内核加载的起始内存地址 
          core_start_sector equ 0x00000001   ;常数，内核的起始逻辑扇区号 
          
-         mov ax,cs      
-         mov ss,ax
-         mov sp,0x7c00
+         mov ax,cs                                                              ; ax == 0x0000
+         mov ss,ax                                                              ; ss == 0x0000
+         mov sp,0x7c00                                                          ; sp == 0x7c00
       
          ;计算GDT所在的逻辑段地址
-         mov eax,[cs:pgdt+0x7c00+0x02]      ;GDT的32位物理地址 
-         xor edx,edx
-         mov ebx,16
-         div ebx                            ;分解成16位逻辑地址 
+         mov eax,[cs:pgdt+0x7c00+0x02]      ;GDT的32位物理地址                    ; eax == 0x00007e00
+         xor edx,edx                                                            ; edx == 0x00000000
+         mov ebx,16                                                             ; ebx == 16
+         div ebx                            ;分解成16位逻辑地址                    ; eax = 0x00007e00 / 16   edx == 0x00007e00 % 16
 
-         mov ds,eax                         ;令DS指向该段以进行操作
-         mov ebx,edx                        ;段内起始偏移地址 
+         mov ds,eax                         ;令DS指向该段以进行操作                 ; ds == 0x00007e00 / 16 
+         mov ebx,edx                        ;段内起始偏移地址                       ; ebx = 0x00007e00 % 16
 
          ;跳过0#号描述符的槽位 
          ;创建1#描述符，这是一个数据段，对应0~4GB的线性地址空间
-         mov dword [ebx+0x08],0x0000ffff    ;基地址为0，段界限为0xFFFFF
+         mov dword [ebx+0x08],0x0000ffff    ;基地址为0，段界限为0xFFFFF             ; ds:ebx == 0x00007e00
          mov dword [ebx+0x0c],0x00cf9200    ;粒度为4KB，存储器段描述符 
 
          ;创建保护模式下初始代码段描述符

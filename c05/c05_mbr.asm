@@ -10,7 +10,7 @@
          ;字符的显示属性分为两个字节
          ;第一个字节是字符的ASCII码，第二个字节是字符的显示属性
          ;下面的0x07表示字符以黑底白字，无闪烁无加亮的方式显示
-         mov byte [es:0x00],'L'
+         mov byte [es:0x00],'L'?
          mov byte [es:0x01],0x07
          mov byte [es:0x02],'a'
          mov byte [es:0x03],0x07
